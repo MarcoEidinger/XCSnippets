@@ -62,11 +62,16 @@ public struct XCodeSnippet {
 }
 
 public extension XCodeSnippet {
+    /// decodes a `.codesnippet` property list file
+    /// - Parameter fileURL: of an existing file conforming to a `.codesnippet` property list file
+    /// - Returns: the code snippet or throws a decoding exception
     static func load(from fileURL: URL) throws -> XCodeSnippet {
         let data = try Data(contentsOf: fileURL)
         return try PropertyListDecoder().decode(XCodeSnippet.self, from: data)
     }
 
+    /// encodes and writes data to  a `.codesnippet` property list file
+    /// - Parameter directoryURL: in which the file exists or shall be created
     func write(to directoryURL: URL) throws {
         let fileURL = directoryURL.appendingPathComponent(fileName(id: id))
         let encoder = PropertyListEncoder()

@@ -17,3 +17,5 @@ let existingSnippets: [XCodeSnippet] = try dir.readContents()
 // DELETE
 try dir.delete(contents: existingSnippets) // alternative:try dir.delete(contentWithId: newSnippet.id)
 ```
+
+**Note**: programmatic changes in file directory ` ~/Library/Developer/Xcode/UserData/CodeSnippets` will be ignored by a running Xcode application. You need to restart Xcode to see changes in the Snippets library. 

@@ -18,6 +18,8 @@ public struct PersistentCodeSnippetDirectory {
         self.directoryURL = explicitDirectoryURL
     }
 
+    /// decodes all files in ``directoryURL`` which have a file suffix  `codesnippet`
+    /// - Returns: array of decoded code snippets
     public func readContents() throws -> [XCodeSnippet] {
         do {
             let snippetContents = try FileManager.default.contentsOfDirectory(
@@ -41,14 +43,21 @@ public struct PersistentCodeSnippetDirectory {
         }
     }
 
+    /// creates (or updates existing) `.codesnippet` property list files in ``directoryURL``
+    /// - Parameter contents: array of decoded code snippets
     public func write(contents: [XCodeSnippet]) throws {
         try contents.forEach { try $0.write(to: self.directoryURL) }
     }
 
+    /// deletes existing `.codesnippet` property list files in ``directoryURL``
+    /// - Parameter contents: array of decoded code snippets
     public func delete(contents: [XCodeSnippet]) throws {
         try contents.forEach { try self.delete(contentWithId: $0.id) }
     }
 
+
+    /// deletes a single existing `.codesnippet` property list file in ``directoryURL``
+    /// - Parameter id: UUID string
     public func delete(contentWithId id: String) throws {
         let directoryURL = directoryURL
         let fileURL = directoryURL.appendingPathComponent(fileName(id: id))
