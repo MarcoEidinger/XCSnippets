@@ -1,4 +1,4 @@
-# XCodeSnippets
+# ``XCodeSnippets``
 
 Swift package to interact with (user-defined) Xcode Code Snippets
 
