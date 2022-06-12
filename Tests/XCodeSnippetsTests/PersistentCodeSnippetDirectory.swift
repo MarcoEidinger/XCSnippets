@@ -17,9 +17,15 @@ final class PersistentXCodeSnippetsTests: XCTestCase {
     }
 
     func testEverything() throws {
+        XCTAssertEqual(try dir.readContents().count, 0)
         let newSnippet = XCodeSnippet(title: "MyFirstCodeSnippet", content: "print(\"Hello World\")")
         XCTAssertNoThrow(try dir.write(contents: [newSnippet])) // alternative: try newSnippet.write(to: URL.codeSnippetsUserDirectoryURL)
-        _ = try dir.readContents()
+        XCTAssertEqual(try dir.readContents().count, 1)
         XCTAssertNoThrow(try dir.delete(contentWithId: newSnippet.id))
+        XCTAssertEqual(try dir.readContents().count, 0)
+    }
+
+    func testReadContentsOnLibraryFolder() throws {
+        XCTAssertNoThrow(try PersistentCodeSnippetDirectory().readContents())
     }
 }
