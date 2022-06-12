@@ -55,7 +55,6 @@ public struct PersistentCodeSnippetDirectory {
         try contents.forEach { try self.delete(contentWithId: $0.id) }
     }
 
-
     /// deletes a single existing `.codesnippet` property list file in ``directoryURL``
     /// - Parameter id: UUID string
     public func delete(contentWithId id: String) throws {
