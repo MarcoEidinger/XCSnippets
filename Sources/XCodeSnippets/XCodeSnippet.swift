@@ -67,7 +67,7 @@ public extension XCodeSnippet {
     /// - Returns: the code snippet or throws a decoding exception
     static func load(from fileURL: URL) throws -> XCodeSnippet {
         let data = try Data(contentsOf: fileURL)
-        return try PropertyListDecoder().decode(XCodeSnippet.self, from: data)
+        return try data.toXCodeSnippet()
     }
 
     /// encodes and writes data to  a `.codesnippet` property list file

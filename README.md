@@ -21,4 +21,13 @@ let existingSnippets: [XCodeSnippet] = try dir.readContents()
 try dir.delete(contents: existingSnippets) // alternative:try dir.delete(contentWithId: newSnippet.id)
 ```
 
+Example how to copy a remote `.codesnippet` file to your local machine
+
+```swift
+try await URLSession.shared.data(from: URL(string: "https://raw.githubusercontent.com/burczyk/XcodeSwiftSnippets/master/swift-forin.codesnippet")!)
+    .0
+    .toXCodeSnippet()
+    .write(to: .codeSnippetsUserDirectoryURL)
+```
+
 **Note**: programmatic changes in file directory ` ~/Library/Developer/Xcode/UserData/CodeSnippets` will be ignored by a running Xcode application. You need to restart Xcode to see changes in the Snippets library. 
