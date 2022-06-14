@@ -3,13 +3,19 @@ import Foundation
 /// A code snippet conforming to the property list format defined by Xcode
 public struct XCodeSnippet {
     public enum Language: String, Codable {
-        case swift = "Xcode.SourceCodeLanguage.Swift"
-        case objc = "Xcode.SourceCodeLanguage.Objective-C"
-        case cPlusPlus = "Xcode.SourceCodeLanguage.C-Plus-Plus"
         case c = "Xcode.SourceCodeLanguage.C" // swiftlint:disable:this identifier_name
+        case cPlusPlus = "Xcode.SourceCodeLanguage.C-Plus-Plus"
+        case generic = "Xcode.SourceCodeLanguage.Generic"
+        case javascript = "Xcode.SourceCodeLanguage.JavaScript"
         case json = "Xcode.SourceCodeLanguage.JSON"
         case plain = "Xcode.SourceCodeLanguage.Plain"
         case markdown = "Xcode.SourceCodeLanguage.Markdown"
+        case objc = "Xcode.SourceCodeLanguage.Objective-C"
+        case python = "Xcode.SourceCodeLanguage.Python"
+        case regularExpression = "Xcode.SourceCodeLanguage.RegularExpression"
+        case rcProject = "Xcode.SourceCodeLanguage.RC-Project"
+        case swift = "Xcode.SourceCodeLanguage.Swift"
+        case xml = "Xcode.SourceCodeLanguage.XML"
     }
 
     public enum Platform: String, Codable {
@@ -109,7 +115,7 @@ extension XCodeSnippet: Codable {
         platform = Platform(rawValue: platformAsString)
 
         let languageAsString = try values.decodeIfPresent(String.self, forKey: .language) ?? Language.swift.rawValue
-        language = .init(rawValue: languageAsString) ?? .swift
+        language = .init(rawValue: languageAsString) ?? .generic
 
         userSnippet = try values.decodeIfPresent(Bool.self, forKey: .userSnippet) ?? true
     }

@@ -34,6 +34,23 @@ final class XCodeSnippetTests: XCTestCase {
         XCTAssertEqual(snippet.contents, expectedContents)
     }
 
+    func testDecodingUnknownLanguage() throws {
+        let data = """
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+        <plist version="1.0">
+        <dict>
+            <key>IDECodeSnippetIdentifier</key>
+            <string>D150D2CA-63D1-435C-B997-13A67073AA71</string>
+            <key>IDECodeSnippetLanguage</key>
+            <string>Xcode.SourceCodeLanguage.Unknown</string>
+        </dict>
+        </plist>
+        """.data(using: .utf8)!
+        let snippet = try data.toXCodeSnippet()
+        XCTAssertEqual(snippet.language, .generic)
+    }
+
     func testSave() throws {
         let snippet = XCodeSnippet(title: "title", summary: "Summary", language: .swift, platform: .iOS, completion: "meep", availability: [.codeBlock], content: "Yoo")
         XCTAssertNoThrow(try snippet.write(to: temporaryDirectoryURL))
