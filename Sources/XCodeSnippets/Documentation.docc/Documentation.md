@@ -1,10 +1,8 @@
 # ``XCodeSnippets``
 
-Swift package to interact with (user-defined) Xcode Code Snippets
+Swift package to provide type-safe interaction with (user-defined) Xcode Code Snippets
 
 ## Overview
-
-
 
 ```swift
 let directory = PersistentCodeSnippetDirectory() // points to ~/Library/Developer/Xcode/UserData/CodeSnippets
