@@ -1,4 +1,4 @@
-@testable import XCodeSnippets
+@testable import XCSnippets
 import XCTest
 
 final class URLTests: XCTestCase {

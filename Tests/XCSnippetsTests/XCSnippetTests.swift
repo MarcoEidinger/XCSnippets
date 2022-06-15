@@ -1,7 +1,7 @@
-@testable import XCodeSnippets
+@testable import XCSnippets
 import XCTest
 
-final class XCodeSnippetTests: XCTestCase {
+final class XCSnippetTests: XCTestCase {
     var temporaryDirectoryURL: URL!
 
     override func setUp() {
@@ -17,7 +17,7 @@ final class XCodeSnippetTests: XCTestCase {
 
     func testLoad() throws {
         let snippetFileURL = Bundle.module.url(forResource: "D150D2CA-63D1-435C-B997-13A67073AA71", withExtension: "codesnippet")!
-        let snippet = try XCodeSnippet.load(from: snippetFileURL)
+        let snippet = try XCSnippet.load(from: snippetFileURL)
         XCTAssertNotNil(snippet)
         XCTAssertEqual(snippet.id, "D150D2CA-63D1-435C-B997-13A67073AA71")
         XCTAssertEqual(snippet.title, "Print \"Hello, World\"")
@@ -47,12 +47,12 @@ final class XCodeSnippetTests: XCTestCase {
         </dict>
         </plist>
         """.data(using: .utf8)!
-        let snippet = try data.toXCodeSnippet()
+        let snippet = try data.toXCSnippet()
         XCTAssertEqual(snippet.language, .generic)
     }
 
     func testSave() throws {
-        let snippet = XCodeSnippet(title: "title", summary: "Summary", language: .swift, platform: .iOS, completion: "meep", availability: [.codeBlock], content: "Yoo")
+        let snippet = XCSnippet(title: "title", summary: "Summary", language: .swift, platform: .iOS, completion: "meep", availability: [.codeBlock], content: "Yoo")
         XCTAssertNoThrow(try snippet.write(to: temporaryDirectoryURL))
     }
 }

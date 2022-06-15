@@ -4,22 +4,22 @@
 import PackageDescription
 
 let package = Package(
-    name: "XCodeSnippets",
+    name: "XCSnippets",
     products: [
         .library(
-            name: "XCodeSnippets",
-            targets: ["XCodeSnippets"]
+            name: "XCSnippets",
+            targets: ["XCSnippets"]
         ),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "XCodeSnippets",
+            name: "XCSnippets",
             dependencies: []
         ),
         .testTarget(
-            name: "XCodeSnippetsTests",
-            dependencies: ["XCodeSnippets"],
+            name: "XCSnippetsTests",
+            dependencies: ["XCSnippets"],
             resources: [
                 .copy("Resources/D150D2CA-63D1-435C-B997-13A67073AA71.codesnippet"),
             ]

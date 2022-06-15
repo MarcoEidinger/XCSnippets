@@ -1,7 +1,7 @@
 import Foundation
 
 /// A code snippet conforming to the property list format defined by Xcode
-public struct XCodeSnippet {
+public struct XCSnippet: Identifiable, Hashable {
     public enum Language: String, Codable {
         case c = "Xcode.SourceCodeLanguage.C" // swiftlint:disable:this identifier_name
         case cPlusPlus = "Xcode.SourceCodeLanguage.C-Plus-Plus"
@@ -37,22 +37,22 @@ public struct XCodeSnippet {
     }
 
     public let id: String
-    public let title: String?
-    public let summary: String?
-    public let language: Language?
-    public let platform: Platform?
-    public let completionPrefix: String?
-    public let availability: [CompletionScopes]?
-    public let contents: String?
+    public var title: String?
+    public var summary: String?
+    public var language: Language?
+    public var platform: Platform?
+    public var completionPrefix: String?
+    public var availability: [CompletionScopes]?
+    public var contents: String?
 
     private let userSnippet: Bool
 
     public init(title: String?,
                 summary: String? = nil,
-                language: XCodeSnippet.Language? = .swift,
-                platform: XCodeSnippet.Platform? = .all,
+                language: XCSnippet.Language? = .swift,
+                platform: XCSnippet.Platform? = .all,
                 completion: String? = nil,
-                availability: [XCodeSnippet.CompletionScopes]? = [.all],
+                availability: [XCSnippet.CompletionScopes]? = [.all],
                 content: String)
     {
         id = UUID().uuidString
@@ -67,13 +67,13 @@ public struct XCodeSnippet {
     }
 }
 
-public extension XCodeSnippet {
+public extension XCSnippet {
     /// decodes a `.codesnippet` property list file
     /// - Parameter fileURL: of an existing file conforming to a `.codesnippet` property list file
     /// - Returns: the code snippet or throws a decoding exception
-    static func load(from fileURL: URL) throws -> XCodeSnippet {
+    static func load(from fileURL: URL) throws -> XCSnippet {
         let data = try Data(contentsOf: fileURL)
-        return try data.toXCodeSnippet()
+        return try data.toXCSnippet()
     }
 
     /// encodes and writes data to  a `.codesnippet` property list file
@@ -87,7 +87,7 @@ public extension XCodeSnippet {
     }
 }
 
-extension XCodeSnippet: Codable {
+extension XCSnippet: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "IDECodeSnippetIdentifier"
         case title = "IDECodeSnippetTitle"
