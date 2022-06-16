@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/MarcoEidinger/XCSnippets/actions/workflows/swift.yml/badge.svg)](https://github.com/MarcoEidinger/XCSnippets/actions/workflows/swift.yml)
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FMarcoEidinger%2FXCSnippets%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/MarcoEidinger/XCSnippets)
-[![](https://img.shields.io/badge/Documentation-DocC-blue)](https://swiftpackageindex.com/MarcoEidinger/XCSnippets/main/documentation/XCSnippets)
+[![](https://img.shields.io/badge/Documentation-DocC-blue)](https://swiftpackageindex.com/MarcoEidinger/XCSnippets/main/documentation/xcsnippets)
 
 Swift package to provide type-safe interaction with (user-defined) Xcode Code Snippets
 
